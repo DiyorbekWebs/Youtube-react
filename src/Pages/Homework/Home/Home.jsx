@@ -1,14 +1,12 @@
-import axios from "axios";
 import React from "react";
 import style from "./home.module.css";
 import { logo } from "../../../assets/img";
 import { Link } from "react-router-dom";
+import request from "../../../config/request";
 const Home = () => {
   var [valu, setValu] = React.useState([]);
   React.useEffect(() => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/photos")
-      .then((e) => setValu([...e.data.slice(0, 12)]));
+    request.get("/photos").then((e) => setValu([...e.data.slice(0, 12)]));
   }, []);
   return (
     <>

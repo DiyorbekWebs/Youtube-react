@@ -1,18 +1,16 @@
-import axios from "axios";
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import style from "./vidoe.module.css";
 import { logo } from "../../../assets/img";
+import request from "../../../config/request";
 
 const Video = () => {
   const id = useParams().id;
   const [value, setValue] = React.useState({});
   React.useEffect(() => {
-    axios
-      .get(`https://jsonplaceholder.typicode.com/photos/${id}`)
-      .then((res) => {
-        setValue(res.data);
-      });
+    request.get(`/photos/${id}`).then((res) => {
+      setValue(res.data);
+    });
   }, []);
   return (
     <>
@@ -26,7 +24,7 @@ const Video = () => {
           <p className={style.text}>{value.title}</p>
           <div className={style.wrapper}>
             <div className={style.content}>
-              <img className={style.chanelImg} src={logo} alt="" />
+              <img className={style.chanelImg} src={logo} alt="logo" />
               <div>
                 <p className={style.chanelName}>chanelName</p>
                 <p className={style.obuna}>Padpischik</p>
